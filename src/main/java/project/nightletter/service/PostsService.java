@@ -45,7 +45,7 @@ public class PostsService {
                 ()-> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
         if(posts.getId().equals(postId)) {
-            posts.setComment(requestDto.getComment());
+            posts.setContent(requestDto.getComment());
             return true;
         } else {
             return false;
@@ -82,7 +82,7 @@ public class PostsService {
                 postId,
                 posts.getUser().getUsername(),
                 posts.getUser().getNickname(),
-                posts.getComment(),
+                posts.getContent(),
                 posts.isAnonymous(),
                 posts.getCreatedAt(),
                 postsResponseItemList
@@ -101,7 +101,7 @@ public class PostsService {
                     posts.getId(),
                     posts.getUser().getUsername(),
                     posts.getUser().getNickname(),
-                    posts.getComment(),
+                    posts.getContent(),
                     posts.isAnonymous(),
                     posts.getCreatedAt(),
                     posts.getReply().size()

@@ -22,7 +22,7 @@ public class Posts extends Timestamped {
 
     // 반드시 값을 가지도록 합니다.
     @Column(nullable = false)
-    private String comment;
+    private String content;
 
     @Column(nullable = false)
     private boolean anonymous;
@@ -36,7 +36,7 @@ public class Posts extends Timestamped {
     private List<Reply> reply;
 
     public Posts(PostsRequestDto requestDto, User user) {
-        this.comment = requestDto.getComment();
+        this.content = requestDto.getComment();
         this.anonymous = requestDto.isAnonymous();
         this.user = user;
     }
