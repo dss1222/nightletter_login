@@ -8,6 +8,7 @@ import project.nightletter.security.UserDetailsImpl;
 
 @Controller
 public class HomeController {
+
     @GetMapping("/")
     public String home(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
