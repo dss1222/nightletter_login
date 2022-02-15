@@ -22,7 +22,7 @@ public class PostsController {
     @PostMapping("/api/posts")
     public Boolean writeLetter(@RequestBody PostsRequestDto requestDto,
                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        System.out.println(requestDto.getComment());
+        System.out.println(requestDto.getContent());
         return postsService.writeLetter(requestDto, userDetails.getUser());
 
     }

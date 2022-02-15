@@ -45,7 +45,7 @@ public class PostsService {
                 ()-> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
         if(posts.getId().equals(postId)) {
-            posts.setContent(requestDto.getComment());
+            posts.setContent(requestDto.getContent());
             return true;
         } else {
             return false;

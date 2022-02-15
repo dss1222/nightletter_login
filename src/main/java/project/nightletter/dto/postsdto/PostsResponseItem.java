@@ -15,7 +15,7 @@ public class PostsResponseItem {
 
     private String username;
 
-    private String comment;
+    private String content;
 
     private LocalDateTime localDateTime;
 

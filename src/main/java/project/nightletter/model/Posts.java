@@ -36,7 +36,7 @@ public class Posts extends Timestamped {
     private List<Reply> reply;
 
     public Posts(PostsRequestDto requestDto, User user) {
-        this.content = requestDto.getComment();
+        this.content = requestDto.getContent();
         this.anonymous = requestDto.isAnonymous();
         this.user = user;
     }

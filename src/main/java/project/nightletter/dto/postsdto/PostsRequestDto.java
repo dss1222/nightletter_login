@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PostsRequestDto {
 
-    private String comment;
+    private String content;
 
     private boolean anonymous;
 
