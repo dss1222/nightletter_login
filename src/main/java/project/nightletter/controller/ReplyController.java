@@ -1,12 +1,8 @@
 package project.nightletter.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.nightletter.dto.replydto.ReplyRequestDto;
-import project.nightletter.dto.replydto.ReplyResponseDto;
 import project.nightletter.model.User;
 import project.nightletter.security.UserDetailsImpl;
 import project.nightletter.service.ReplyService;
@@ -24,10 +20,15 @@ public class ReplyController {
     // 댓글 작성
     // 게시글 id 로 댓글 작성
     @PostMapping("/api/reply/{postId}")
-    public ReplyResponseDto createReply(@PathVariable Long postId, @RequestBody ReplyRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public void createReply(@PathVariable Long postId, @RequestBody ReplyRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IllegalAccessException {
 
        User user = userDetails.getUser();
-       return replyService.createReply(postId, requestDto, user);
+       replyService.createReply(postId, requestDto, user);
+    }
+
+    @DeleteMapping("/api/reply/{replyId}")
+    public void deleteReply(@PathVariable Long replyId) {
+        replyService.deleteReply(replyId);
     }
 
 }

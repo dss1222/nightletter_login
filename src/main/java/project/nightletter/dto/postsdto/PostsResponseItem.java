@@ -13,6 +13,8 @@ public class PostsResponseItem {
 
     private String nickname;
 
+    private String username;
+
     private String comment;
 
     private LocalDateTime localDateTime;

@@ -3,7 +3,6 @@ package project.nightletter.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import project.nightletter.dto.replydto.ReplyRequestDto;
-import project.nightletter.dto.replydto.ReplyResponseDto;
 import project.nightletter.model.Posts;
 import project.nightletter.model.Reply;
 import project.nightletter.model.User;
@@ -24,16 +23,10 @@ public class ReplyService {
 
     // 댓글 작성
     @Transactional
-    public ReplyResponseDto createReply(Long PostId, ReplyRequestDto replyRequestDto, User user) {
-
-        ReplyResponseDto result = new ReplyResponseDto();
+    public void createReply(Long PostId, ReplyRequestDto replyRequestDto, User user) throws IllegalAccessException {
 
         try {
             Posts posts = postsRepository.findById(PostId).orElseGet(null);
-            if (posts == null) {
-                result.setResult(false); //게시물 없음을 의미
-                return result;
-            }
 
             Reply reply = new Reply(replyRequestDto,user,posts);
             replyRepository.save(reply);
@@ -41,21 +34,19 @@ public class ReplyService {
             // replyRepository.save(reply);
 
         } catch (Exception e) {
-            result.setResult(false);
+            throw new IllegalAccessException("게시물이 존재하지 않습니다.");
 
 
         }
 
-        return result;
-
 
     }
     @Transactional
-    public void update(Long id, ReplyRequestDto replyRequestDto) {
-        Reply Reply = replyRepository.findById(id).orElseThrow(
+    public void deleteReply(Long id) {
+        Reply reply = replyRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
-        Reply.update(replyRequestDto);
+        replyRepository.delete(reply);
     }
 
 }

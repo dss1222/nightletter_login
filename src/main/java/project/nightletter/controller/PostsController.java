@@ -4,6 +4,8 @@ package project.nightletter.controller;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import project.nightletter.dto.postsdto.PostsRequestDto;
+import project.nightletter.dto.postsdto.PostsResponseDto;
+import project.nightletter.model.Posts;
 import project.nightletter.security.UserDetailsImpl;
 import project.nightletter.service.PostsService;
 
@@ -20,9 +22,14 @@ public class PostsController {
     @PostMapping("/api/posts")
     public Boolean writeLetter(@RequestBody PostsRequestDto requestDto,
                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
-
+        System.out.println(requestDto.getComment());
         return postsService.writeLetter(requestDto, userDetails.getUser());
 
+    }
+
+    @GetMapping("/api/posts/{postId}")
+    public PostsResponseDto getDetails(@PathVariable Long postId) {
+        return postsService.getdetails(postId);
     }
 
     @PutMapping("/api/posts/{postId}")

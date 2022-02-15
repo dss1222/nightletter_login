@@ -57,11 +57,12 @@ public class PostsService {
         return true;
     }
 
-    public PostsResponseDto getLetter(Long postId) {
+    public PostsResponseDto getdetails(Long postId) {
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 ()-> new NullPointerException("해당 post가 존재하지 않습니다.")
         );
         String nickName = posts.getUser().getNickname();
+        String username = posts.getUser().getUsername();
         List<Reply> replys = replyRepository.findAllByPosts(posts);
 
         List<PostsResponseItem> postsResponseItemList = new ArrayList<>();
@@ -69,6 +70,7 @@ public class PostsService {
             PostsResponseItem postsResponseItem = new PostsResponseItem(
                     reply.getId(),
                     nickName,
+                    username,
                     reply.getComment(),
                     reply.getCreatedAt(),
                     reply.isAnonymous()
@@ -83,7 +85,8 @@ public class PostsService {
                 posts.getComment(),
                 posts.isAnonymous(),
                 posts.getCreatedAt(),
-                postsResponseItemList);
+                postsResponseItemList
+        );
     }
 
     public List<MainResponseDto> getAllLetter() {

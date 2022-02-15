@@ -7,6 +7,7 @@ public class ReplyRequestDto {
 
 
     private String comment;
+
     private boolean anonymous;
 
 
