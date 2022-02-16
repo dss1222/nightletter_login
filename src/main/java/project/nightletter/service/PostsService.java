@@ -42,21 +42,32 @@ public class PostsService {
 //        Posts posts = new Posts(requestDto, user);
 
         Posts posts = postsRepository.findById(postId).orElseThrow(
-                ()-> new NullPointerException("해당 게시물이 존재하지 않습니다.")
+                () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
         posts.update(requestDto.getContent(), requestDto.isAnonymous(), posts.getUser());
     }
 
+    //    public boolean deleteLetter(Long postId) {
+//        postsRepository.deleteById(postId);
+//        return true;
+//    }
     public boolean deleteLetter(Long postId) {
+        Posts posts = postsRepository.findById(postId).orElseThrow(
+                () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
+        );
+        List<Reply> replys = replyRepository.findAllByPosts(posts);
+        for (Reply reply : replys) {
+            replyRepository.deleteById(reply.getId());
+        }
         postsRepository.deleteById(postId);
         return true;
     }
 
     public PostsResponseDto getdetails(Long postId) {
         Posts posts = postsRepository.findById(postId).orElseThrow(
-                ()-> new NullPointerException("해당 post가 존재하지 않습니다.")
+                () -> new NullPointerException("해당 post가 존재하지 않습니다.")
         );
-        List<PostsResponseItem> postsResponseItemList =  replyListService.getPostsResponseItemList(posts);
+        List<PostsResponseItem> postsResponseItemList = replyListService.getPostsResponseItemList(posts);
 
         return new PostsResponseDto(
                 postId,
@@ -75,10 +86,10 @@ public class PostsService {
         LocalDateTime end = LocalDateTime.now();
 
         List<Posts> postsList = postsRepository.findAllByUpdatedAtBetweenOrderByUpdatedAtDesc(start, end);
-        List<MainResponseDto> mainResponseDtoList= new ArrayList<>();
-        for(Posts posts : postsList) {
+        List<MainResponseDto> mainResponseDtoList = new ArrayList<>();
+        for (Posts posts : postsList) {
 
-            List<PostsResponseItem> postsResponseItemList =  replyListService.getPostsResponseItemList(posts);
+            List<PostsResponseItem> postsResponseItemList = replyListService.getPostsResponseItemList(posts);
 
             MainResponseDto mainResponseDto = new MainResponseDto(
                     posts.getId(),

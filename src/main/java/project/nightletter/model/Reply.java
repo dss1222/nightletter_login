@@ -2,10 +2,12 @@ package project.nightletter.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
+import lombok.Setter;
 import project.nightletter.dto.replydto.ReplyRequestDto;
 
 import javax.persistence.*;
 
+@Setter
 @Getter
 @Entity // DB 테이블 역할을 합니다.
 public class Reply extends Timestamped {
