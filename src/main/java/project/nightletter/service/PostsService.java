@@ -44,10 +44,7 @@ public class PostsService {
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 ()-> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
-        posts.setContent(requestDto.getContent());
-        posts.setAnonymous(requestDto.isAnonymous());
-        posts.setUser(posts.getUser());
-        posts.setReply(posts.getReply());
+        posts.update(requestDto.getContent(), requestDto.isAnonymous(), posts.getUser());
         return true;
     }
 
