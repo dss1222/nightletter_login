@@ -24,7 +24,6 @@ public class PostsController {
                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println(requestDto.getContent());
         return postsService.writeLetter(requestDto, userDetails.getUser());
-
     }
 
     @GetMapping("/api/posts/{postId}")

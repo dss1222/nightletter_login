@@ -21,6 +21,6 @@ public class MainResponseDto {
 
     private LocalDateTime localDateTime;
 
-    private int replyCount;
+    private Integer replyCount;
 
 }

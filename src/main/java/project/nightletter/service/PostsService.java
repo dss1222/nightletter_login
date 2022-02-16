@@ -44,12 +44,11 @@ public class PostsService {
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 ()-> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
-        if(posts.getId().equals(postId)) {
-            posts.setContent(requestDto.getContent());
-            return true;
-        } else {
-            return false;
-        }
+        posts.setContent(requestDto.getContent());
+        posts.setAnonymous(requestDto.isAnonymous());
+        posts.setUser(posts.getUser());
+        posts.setReply(posts.getReply());
+        return true;
     }
 
     public boolean deleteLetter(Long postId) {
