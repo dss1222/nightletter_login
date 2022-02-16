@@ -37,8 +37,4 @@ public class ReplyListService {
         return postsResponseItemList;
     }
 
-
-
-
-
 }

@@ -16,7 +16,7 @@ public class PostsResponseDto {
 
     private String username;
 
-    private String nickName;
+    private String nickname;
 
     private String content;
 
