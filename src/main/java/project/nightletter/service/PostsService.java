@@ -88,6 +88,21 @@ public class PostsService {
         List<Posts> postsList = postsRepository.findAllByUpdatedAtBetweenOrderByUpdatedAtDesc(start, end);
         List<MainResponseDto> mainResponseDtoList= new ArrayList<>();
         for(Posts posts : postsList) {
+
+            List<Reply> replys = replyRepository.findAllByPosts(posts);
+            List<PostsResponseItem> postsResponseItemList = new ArrayList<>();
+            for(Reply reply : replys) {
+                PostsResponseItem postsResponseItem = new PostsResponseItem(
+                        reply.getId(),
+                        reply.getUser().getNickname(),
+                        reply.getUser().getUsername(),
+                        reply.getComment(),
+                        reply.getCreatedAt(),
+                        reply.isAnonymous()
+                );
+                postsResponseItemList.add(postsResponseItem);
+            }
+
             MainResponseDto mainResponseDto = new MainResponseDto(
                     posts.getId(),
                     posts.getUser().getUsername(),
@@ -95,7 +110,9 @@ public class PostsService {
                     posts.getContent(),
                     posts.isAnonymous(),
                     posts.getCreatedAt(),
-                    posts.getReply().size()
+                    posts.getReply().size(),
+                    postsResponseItemList
+
             );
             mainResponseDtoList.add(mainResponseDto);
         }

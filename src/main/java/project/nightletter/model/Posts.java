@@ -21,7 +21,7 @@ public class Posts extends Timestamped {
     private Long id;
 
     // 반드시 값을 가지도록 합니다.
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     @Column(nullable = false)
