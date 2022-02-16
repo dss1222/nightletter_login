@@ -28,6 +28,7 @@ public class PostsController {
 
     @GetMapping("/api/posts/{postId}")
     public PostsResponseDto getDetails(@PathVariable Long postId) {
+
         return postsService.getdetails(postId);
     }
 

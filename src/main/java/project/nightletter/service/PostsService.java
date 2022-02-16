@@ -54,16 +54,14 @@ public class PostsService {
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 ()-> new NullPointerException("해당 post가 존재하지 않습니다.")
         );
-        String nickName = posts.getUser().getNickname();
-        String username = posts.getUser().getUsername();
         List<Reply> replys = replyRepository.findAllByPosts(posts);
 
         List<PostsResponseItem> postsResponseItemList = new ArrayList<>();
         for(Reply reply : replys) {
             PostsResponseItem postsResponseItem = new PostsResponseItem(
                     reply.getId(),
-                    nickName,
-                    username,
+                    reply.getUser().getNickname(),
+                    reply.getUser().getUsername(),
                     reply.getComment(),
                     reply.getCreatedAt(),
                     reply.isAnonymous()
