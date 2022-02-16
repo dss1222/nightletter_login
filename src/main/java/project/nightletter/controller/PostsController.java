@@ -20,7 +20,7 @@ public class PostsController {
 
     //편지 작성.
     @PostMapping("/api/posts")
-    public Boolean writeLetter(@RequestBody PostsRequestDto requestDto,
+    public Long writeLetter(@RequestBody PostsRequestDto requestDto,
                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println(requestDto.getContent());
         return postsService.writeLetter(requestDto, userDetails.getUser());

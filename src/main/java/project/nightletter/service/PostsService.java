@@ -28,13 +28,11 @@ public class PostsService {
         this.replyRepository = replyRepository;
     }
 
-    public boolean writeLetter(PostsRequestDto requestDto, User user) {
+    public Long writeLetter(PostsRequestDto requestDto, User user) {
 
         Posts posts = new Posts(requestDto, user);
 
-        postsRepository.save(posts);
-
-        return true;
+        return postsRepository.save(posts).getId();
     }
 
     @Transactional
