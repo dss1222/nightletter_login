@@ -26,6 +26,9 @@ public class ReplyController {
        replyService.createReply(postId, requestDto, user);
     }
 
+
+
+    //댓글 삭제
     @DeleteMapping("/api/reply/{replyId}")
     public void deleteReply(@PathVariable Long replyId) {
         replyService.deleteReply(replyId);

@@ -19,7 +19,7 @@ public class HomeController {
         this.postsService = postsService;
     }
 
-    @GetMapping("/api/mains")
+    @GetMapping("/api/mains") //메인으로 넘어감
     public List<MainResponseDto> letterList() {
 
         return postsService.getAllLetter();

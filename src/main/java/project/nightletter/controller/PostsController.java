@@ -18,7 +18,7 @@ public class PostsController {
         this.postsService = postsService;
     }
 
-    //편지 작성.
+    //게시글 편지 작성.
     @PostMapping("/api/posts")
     public Boolean writeLetter(@RequestBody PostsRequestDto requestDto,
                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -26,6 +26,7 @@ public class PostsController {
         return postsService.writeLetter(requestDto, userDetails.getUser());
     }
 
+    //게시글 편지 상세페이지로 이동
     @GetMapping("/api/posts/{postId}")
     public PostsResponseDto getDetails(@PathVariable Long postId) {
 
@@ -33,12 +34,15 @@ public class PostsController {
     }
 
 
+    //게시글 편지 수정
     @PutMapping("/api/posts/{postId}")
     public boolean editLetter(@PathVariable Long postId,
                               @RequestBody PostsRequestDto requestDto) {
         return postsService.editLetter(requestDto,postId);
     }
 
+
+    //게시글 편지 삭제
     @DeleteMapping("/api/posts/{postId}")
     public boolean deleteLetter(@PathVariable Long postId) {
         return postsService.deleteLetter(postId);

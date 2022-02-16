@@ -25,15 +25,15 @@ public class ReplyService {
     @Transactional
     public void createReply(Long PostId, ReplyRequestDto replyRequestDto, User user) throws IllegalAccessException {
 
-        try {
+        try { //아이디를 조회
             Posts posts = postsRepository.findById(PostId).orElseGet(null);
-
+            //찾은 아이디와 함께 replyRequestDto.getComment(), replyRequestDto.isAnonymous() 입력해주고 reply에 넣어준다
             Reply reply = new Reply(replyRequestDto,user,posts);
-            replyRepository.save(reply);
+            replyRepository.save(reply); //그리고 Reply Repository 에 저장
             //Reply reply = replyRequestDto.
             // replyRepository.save(reply);
 
-        } catch (Exception e) {
+        } catch (Exception e) {//없다면 예외 처리
             throw new IllegalAccessException("게시물이 존재하지 않습니다.");
 
 
@@ -41,11 +41,16 @@ public class ReplyService {
 
 
     }
+
+    //댓글 삭제
     @Transactional
     public void deleteReply(Long id) {
+            //Reply id를 조회
         Reply reply = replyRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
+
+        //그리고 삭제
         replyRepository.delete(reply);
     }
 

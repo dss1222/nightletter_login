@@ -15,25 +15,28 @@ import java.util.List;
 @Entity // DB 테이블 역할을 합니다.
 public class Posts extends Timestamped {
 
+    //모델 post(게시글)
+
     // ID가 자동으로 생성 및 증가합니다.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private Long id;  //post 아이디값
 
     // 반드시 값을 가지도록 합니다.
     @Column(nullable = false)
-    private String content;
+    private String content; //post content 글 내용 칼럼
 
+    // 반드시 값을 가지도록 합니다.
     @Column(nullable = false)
-    private boolean anonymous;
+    private boolean anonymous; //유저 익명성 여부를 확인하기 위한 칼럼
 
     @JoinColumn(name = "username_id")
     @ManyToOne
-    private User user;
+    private User user;  //외래키를 이용해서 유저 테이블 참조
 
     @JsonBackReference
     @OneToMany(mappedBy = "posts")
-    private List<Reply> reply;
+    private List<Reply> reply; //외래키를 이용해서 유저 테이블 참조 양방향으로 맺었기 때문에 mappedBy로 설정해준다.
 
     public Posts(PostsRequestDto requestDto, User user) {
         this.content = requestDto.getContent();
