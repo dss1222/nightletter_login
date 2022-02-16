@@ -23,15 +23,13 @@ public class ReplyService {
 
     // 댓글 작성
     @Transactional
-    public void createReply(Long PostId, ReplyRequestDto replyRequestDto, User user) throws IllegalAccessException {
+    public Long createReply(Long PostId, ReplyRequestDto replyRequestDto, User user) throws IllegalAccessException {
 
         try {
             Posts posts = postsRepository.findById(PostId).orElseGet(null);
 
             Reply reply = new Reply(replyRequestDto,user,posts);
-            replyRepository.save(reply);
-            //Reply reply = replyRequestDto.
-            // replyRepository.save(reply);
+            return replyRepository.save(reply).getId();
 
         } catch (Exception e) {
             throw new IllegalAccessException("게시물이 존재하지 않습니다.");

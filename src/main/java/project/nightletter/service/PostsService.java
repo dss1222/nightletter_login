@@ -36,14 +36,13 @@ public class PostsService {
     }
 
     @Transactional
-    public boolean editLetter(PostsRequestDto requestDto, Long postId) {
+    public void editLetter(PostsRequestDto requestDto, Long postId) {
 //        Posts posts = new Posts(requestDto, user);
 
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 ()-> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
         posts.update(requestDto.getContent(), requestDto.isAnonymous(), posts.getUser());
-        return true;
     }
 
     public boolean deleteLetter(Long postId) {

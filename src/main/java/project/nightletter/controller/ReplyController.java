@@ -20,10 +20,10 @@ public class ReplyController {
     // 댓글 작성
     // 게시글 id 로 댓글 작성
     @PostMapping("/api/reply/{postId}")
-    public void createReply(@PathVariable Long postId, @RequestBody ReplyRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IllegalAccessException {
+    public Long createReply(@PathVariable Long postId, @RequestBody ReplyRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IllegalAccessException {
 
        User user = userDetails.getUser();
-       replyService.createReply(postId, requestDto, user);
+       return replyService.createReply(postId, requestDto, user);
     }
 
     @DeleteMapping("/api/reply/{replyId}")
