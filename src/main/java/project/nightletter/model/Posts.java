@@ -43,7 +43,7 @@ public class Posts extends Timestamped {
 
     public void update(String content, boolean anonymous, User user) {
         this.content = content;
-        this.anonymous = isAnonymous();
+        this.anonymous = anonymous;
         this.user = user;
     }
 

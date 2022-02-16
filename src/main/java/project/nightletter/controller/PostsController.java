@@ -33,7 +33,7 @@ public class PostsController {
 
     @PutMapping("/api/posts/{postId}")
     public boolean editLetter(@PathVariable Long postId,
-                              PostsRequestDto requestDto) {
+                              @RequestBody PostsRequestDto requestDto) {
         return postsService.editLetter(requestDto,postId);
     }
 
