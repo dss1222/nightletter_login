@@ -21,11 +21,13 @@ import java.util.List;
 public class PostsService {
     private final PostsRepository postsRepository;
     private final ReplyRepository replyRepository;
+    private final ReplyListService replyListService;
 
     @Autowired
-    public PostsService(PostsRepository postsRepository, ReplyRepository replyRepository) {
+    public PostsService(PostsRepository postsRepository, ReplyRepository replyRepository, ReplyListService replyListService) {
         this.postsRepository = postsRepository;
         this.replyRepository = replyRepository;
+        this.replyListService = replyListService;
     }
 
     public Long writeLetter(PostsRequestDto requestDto, User user) {
@@ -54,20 +56,7 @@ public class PostsService {
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 ()-> new NullPointerException("해당 post가 존재하지 않습니다.")
         );
-        List<Reply> replys = replyRepository.findAllByPosts(posts);
-
-        List<PostsResponseItem> postsResponseItemList = new ArrayList<>();
-        for(Reply reply : replys) {
-            PostsResponseItem postsResponseItem = new PostsResponseItem(
-                    reply.getId(),
-                    reply.getUser().getNickname(),
-                    reply.getUser().getUsername(),
-                    reply.getComment(),
-                    reply.getCreatedAt(),
-                    reply.isAnonymous()
-            );
-            postsResponseItemList.add(postsResponseItem);
-        }
+        List<PostsResponseItem> postsResponseItemList =  replyListService.getPostsResponseItemList(posts);
 
         return new PostsResponseDto(
                 postId,
@@ -89,19 +78,7 @@ public class PostsService {
         List<MainResponseDto> mainResponseDtoList= new ArrayList<>();
         for(Posts posts : postsList) {
 
-            List<Reply> replys = replyRepository.findAllByPosts(posts);
-            List<PostsResponseItem> postsResponseItemList = new ArrayList<>();
-            for(Reply reply : replys) {
-                PostsResponseItem postsResponseItem = new PostsResponseItem(
-                        reply.getId(),
-                        reply.getUser().getNickname(),
-                        reply.getUser().getUsername(),
-                        reply.getComment(),
-                        reply.getCreatedAt(),
-                        reply.isAnonymous()
-                );
-                postsResponseItemList.add(postsResponseItem);
-            }
+            List<PostsResponseItem> postsResponseItemList =  replyListService.getPostsResponseItemList(posts);
 
             MainResponseDto mainResponseDto = new MainResponseDto(
                     posts.getId(),
