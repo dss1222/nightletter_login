@@ -104,7 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         formLoginFilter.afterPropertiesSet();
         return formLoginFilter;
     }
-//
+
     @Bean
     public FormLoginSuccessHandler formLoginSuccessHandler() {
         return new FormLoginSuccessHandler();
@@ -126,14 +126,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("GET,/h2-console/**");
         skipPathList.add("POST,/h2-console/**");
         // 회원 관리 API 허용
-        skipPathList.add("GET,/user/**");
+//        skipPathList.add("GET,/user/**");
         skipPathList.add("POST,/user/signup");
-        skipPathList.add("POST,/user/**");
 
         skipPathList.add("GET,/");
         skipPathList.add("GET,/basic.js");
 
-        skipPathList.add("GET,/favicon.ico");
+//        skipPathList.add("GET,/favicon.ico");
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPathList,

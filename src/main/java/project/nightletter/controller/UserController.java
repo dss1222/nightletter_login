@@ -39,6 +39,7 @@ public class UserController {
         return "signupup";
     }
 
+    //회원가입
     @PostMapping("/user/signup")
     public ResponseEntity<String> registerUser(@Valid @RequestBody SignupRequestDto requestDto) {
         System.out.println(requestDto);
@@ -47,12 +48,17 @@ public class UserController {
         return ResponseEntity.ok()
                 .body("회원가입 완료");
     }
-    // 회원 관련 정보 받기
-    @PostMapping("/user/islogin")
+
+    // 로그인 여부 확인
+    @GetMapping("/user/islogin")
     @ResponseBody
     public UserInfoDto getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         String username = userDetails.getUser().getUsername();
         String nickname = userDetails.getUser().getNickname();
+
+        System.out.println(username);
+        System.out.println(nickname);
+
         return new UserInfoDto(username, nickname);
     }
 
