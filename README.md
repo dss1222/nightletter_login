@@ -32,13 +32,10 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 
 
-| 기능  | Method  | URL  | Reauest  | Response  |
-|---|---|---|---|---|
-| 로그인 요청  | POST  |   username: "iamuser",  password: "1234"   |
-  |  |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+
+### API
+<img src="https://user-images.githubusercontent.com/97422693/154411874-97c416b1-041a-4ce7-b428-5f986e1cdc20.PNG" width="500px">
+<img src="https://user-images.githubusercontent.com/97422693/154411915-ded73fc3-7d15-4862-8858-9ceb165874c5.PNG" width="500px">
+<img src="https://user-images.githubusercontent.com/97422693/154411945-2e2ff040-eee9-4ec5-9028-45dd8118fc03.PNG" width="500px">
+
 
