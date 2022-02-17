@@ -32,9 +32,19 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 
 
-| Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
-| col 2 is |    centered   |   $12 |
-| col 3 is | right-aligned |    $1 |
+| 기능  | Method  | URL  | Reauest  | Response  |
+|---|---|---|---|---|
+| 로그인 요청  | POST  | 
+/user/login  | {
+    username: "iamuser",
+    password: "1234"
+}  |  {
+result : true/false
+}
+header: jwt token |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
 
