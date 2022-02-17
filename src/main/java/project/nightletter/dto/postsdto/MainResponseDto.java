@@ -25,6 +25,4 @@ public class MainResponseDto {
 
     private Integer replyCount;
 
-    private List<PostsResponseItem> replys;
-
 }

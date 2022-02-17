@@ -24,6 +24,4 @@ public class PostsResponseDto {
 
     private LocalDateTime localDateTime;
 
-    private List<PostsResponseItem> replys;
-
 }

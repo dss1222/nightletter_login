@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import project.nightletter.dto.postsdto.MainResponseDto;
 import project.nightletter.dto.postsdto.PostsRequestDto;
 import project.nightletter.dto.postsdto.PostsResponseDto;
-import project.nightletter.dto.postsdto.PostsResponseItem;
 import project.nightletter.model.Posts;
 import project.nightletter.model.Reply;
 import project.nightletter.model.User;
@@ -21,13 +20,11 @@ import java.util.List;
 public class PostsService {
     private final PostsRepository postsRepository;
     private final ReplyRepository replyRepository;
-    private final ReplyListService replyListService;
 
     @Autowired
-    public PostsService(PostsRepository postsRepository, ReplyRepository replyRepository, ReplyListService replyListService) {
+    public PostsService(PostsRepository postsRepository, ReplyRepository replyRepository) {
         this.postsRepository = postsRepository;
         this.replyRepository = replyRepository;
-        this.replyListService = replyListService;
     }
 
     public Long writeLetter(PostsRequestDto requestDto, User user) {
@@ -47,10 +44,6 @@ public class PostsService {
         posts.update(requestDto.getContent(), requestDto.isAnonymous(), posts.getUser());
     }
 
-    //    public boolean deleteLetter(Long postId) {
-//        postsRepository.deleteById(postId);
-//        return true;
-//    }
     public boolean deleteLetter(Long postId) {
         Posts posts = postsRepository.findById(postId).orElseThrow(
                 () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
@@ -65,9 +58,8 @@ public class PostsService {
 
     public PostsResponseDto getdetails(Long postId) {
         Posts posts = postsRepository.findById(postId).orElseThrow(
-                () -> new NullPointerException("해당 post가 존재하지 않습니다.")
+                () -> new NullPointerException("해당 게시물이 존재하지 않습니다.")
         );
-        List<PostsResponseItem> postsResponseItemList = replyListService.getPostsResponseItemList(posts);
 
         return new PostsResponseDto(
                 postId,
@@ -75,8 +67,7 @@ public class PostsService {
                 posts.getUser().getNickname(),
                 posts.getContent(),
                 posts.isAnonymous(),
-                posts.getCreatedAt(),
-                postsResponseItemList
+                posts.getCreatedAt()
         );
     }
 
@@ -89,8 +80,6 @@ public class PostsService {
         List<MainResponseDto> mainResponseDtoList = new ArrayList<>();
         for (Posts posts : postsList) {
 
-            List<PostsResponseItem> postsResponseItemList = replyListService.getPostsResponseItemList(posts);
-
             MainResponseDto mainResponseDto = new MainResponseDto(
                     posts.getId(),
                     posts.getUser().getUsername(),
@@ -98,8 +87,7 @@ public class PostsService {
                     posts.getContent(),
                     posts.isAnonymous(),
                     posts.getCreatedAt(),
-                    posts.getReply().size(),
-                    postsResponseItemList
+                    posts.getReply().size()
 
             );
             mainResponseDtoList.add(mainResponseDto);
