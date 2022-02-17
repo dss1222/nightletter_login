@@ -82,9 +82,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
+                //ㅡㅡㅡㅡㅡㅡㅡㅡ
+                // 메인페이지 접근허용
+                .antMatchers("/api/mains").permitAll()
+                // api 요청 접근허용
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
+                // 전부 허용
+                //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 추가
+                .antMatchers("*").permitAll()
                 .anyRequest()
                 .permitAll()
                 .and()
+
                 // [로그아웃 기능]
                 .logout()
                 // 로그아웃 요청 처리 URL
@@ -94,6 +105,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 // "접근 불가" 페이지 URL 설정
                 .accessDeniedPage("/forbidden.html");
+
     }
 
     @Bean
@@ -126,14 +138,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("GET,/h2-console/**");
         skipPathList.add("POST,/h2-console/**");
         // 회원 관리 API 허용
-        skipPathList.add("GET,/user/**");
+//        skipPathList.add("GET,/user/**");
         skipPathList.add("POST,/user/signup");
-        skipPathList.add("POST,/user/**");
+        //메인페이지 스킵!
+        skipPathList.add("GET,/api/mains");
+        skipPathList.add("GET,/api/posts/**");
 
         skipPathList.add("GET,/");
         skipPathList.add("GET,/basic.js");
 
-        skipPathList.add("GET,/favicon.ico");
+//        skipPathList.add("GET,/favicon.ico");
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPathList,
