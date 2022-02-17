@@ -7,6 +7,8 @@
 #### 프론트 - [안진희](https://github.com/YJ-my),[최예진](https://github.com/YJ-my)
 #### 백 - [이승민](https://github.com/howCanIFind),[김종훈](https://github.com/kjhbbjoker),[신동석](https://github.com/dss1222)
 
+#### 프론트 GIT-HUB 주소 https://github.com/YJ-my/sparta-w6-letter
+
 <hr/>
 
 ### API 설계서
