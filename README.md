@@ -7,6 +7,8 @@
 #### 프론트 - [안진희](https://github.com/YJ-my),[최예진](https://github.com/YJ-my)
 #### 백 - [이승민](https://github.com/howCanIFind),[김종훈](https://github.com/kjhbbjoker),[신동석](https://github.com/dss1222)
 
+#### 프론트 GIT-HUB 주소 https://github.com/YJ-my/sparta-w6-letter
+
 <hr/>
 
 ### API 설계서
@@ -31,7 +33,7 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 
 
-###Trouble Shooting
+### Trouble Shooting
 
 
 <details>
@@ -94,6 +96,20 @@ cascade를 이용하여 해결하는 법도 있엇지만 서비스 게시물 Del
 logging.level.org.apache.coyote.http11: debug
 ```
 클라이언트가 보낸 요청 메시지 로그 보는 방법인 logging.level.org.apache.coyote.http11: debug을 이용하여 문제를 찾으면서 해결
+
+</div>
+</details>
+    
+    
+    
+<details>
+<summary>서버 과부하 최소화를 위한 성능 최적화 작업</summary>
+<div markdown="1">
+
+
+
+
+..........
 
 </div>
 </details>
