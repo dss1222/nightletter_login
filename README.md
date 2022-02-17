@@ -27,6 +27,5 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 
 ### Entity Relatuonship Diagram
-<img src="![엔티티 연관관계](https://user-images.githubusercontent.com/97422693/154409375-b7475703-869e-4ccd-b082-d3c5fdaa8111.PNG)
-" width="500px">
+<img src="https://user-images.githubusercontent.com/97422693/154409375-b7475703-869e-4ccd-b082-d3c5fdaa8111.PNG" width="500px">
 
