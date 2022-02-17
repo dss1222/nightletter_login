@@ -99,6 +99,8 @@ logging.level.org.apache.coyote.http11: debug
 </details>
     
     
+    
+<details>
 <summary>서버 과부하 최소화를 위한 성능 최적화 작업</summary>
 <div markdown="1">
 
