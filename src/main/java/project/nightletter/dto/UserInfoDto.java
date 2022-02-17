@@ -8,6 +8,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class UserInfoDto {
+
     String username;
+
     String nickname;
+
 }
