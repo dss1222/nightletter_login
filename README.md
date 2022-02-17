@@ -38,3 +38,15 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 | BACK-END| BACK-END | BACK-END  |
 
 
+###Trouble Shooting
+
+JSON형식이 아닌 FORM 데이터 형식으로 넘어가는 오류 발생
+
+```java
+@PutMapping("/api/posts/{postId}")
+    public void editLetter(@PathVariable Long postId,
+                              @RequestBody PostsRequestDto requestDto) {
+        postsService.editLetter(requestDto,postId);
+    }
+```
+@RequestBody을 사용하지 않아서 발생하는 문제임을 확인
