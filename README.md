@@ -31,13 +31,6 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 
 
-### BACK-END Members 
-
-| 신동석  | 신승민  | 김종훈  |
-|:-:|---|---|
-| BACK-END| BACK-END | BACK-END  |
-
-
 ###Trouble Shooting
 
 
