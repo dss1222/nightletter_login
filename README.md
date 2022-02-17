@@ -40,7 +40,10 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 ###Trouble Shooting
 
-*JSON형식이 아닌 FORM 데이터 형식으로 넘어가는 오류 발생
+
+<details>
+<summary>JSON형식이 아닌 FORM 데이터 형식으로 넘어가는 오류 발생</summary>
+<div markdown="1">
 
 ```java
 @PutMapping("/api/posts/{postId}")
@@ -50,6 +53,13 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
     }
 ```
 @RequestBody을 사용하지 않아서 발생하는 문제임을 확인하고 해결
+
+</div>
+</details>
+
+
+
+
 
 
 
