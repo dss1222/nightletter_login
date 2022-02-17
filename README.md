@@ -29,3 +29,102 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 ### Entity Relatuonship Diagram
 <img src="https://user-images.githubusercontent.com/97422693/154409375-b7475703-869e-4ccd-b082-d3c5fdaa8111.PNG" width="500px">
 
+
+
+
+로그인 요청	POST	/user/login	{
+    username: "iamuser",
+    password: "1234"
+}	{
+result : true/false
+}
+header: jwt token
+로그인 여부 확인	POST	/user/islogin		{
+    userInfo:{
+        username: username,
+        nickname: nickname
+    }
+}
+header: jwt token
+로그아웃	GET	/user/logout		{
+result : true/false
+}
+회원가입 요청	POST	/user/signup	{
+  username: “kr1234”,
+  nickname: “닉네임”
+  password: “1234”
+
+}	{
+result : true/false (+에러메세지)
+}
+게시글 작성	POST	/api/posts	{
+    content : "반가워요"
+    anonymous :  true/false,
+ }
+header:jwttoken	{
+result : true/false
+}
+게시글 수정	PUT	/api/posts/{postId}	{
+    content : "반가워요"
+    anonymous :  true/false
+ }
+header:jwttoken	{
+result : true/false
+}
+게시글 삭제	DELETE	/api/posts/{postId}		{
+result : true/false
+}
+답장 작성	POST	/api/reply/{postId}	{
+    comment : "나도 반가워요"
+    anonymous : true/false 
+}	{
+result : true/false
+}
+답장 요청	GET	/api/reply/{postId}		
+답장 삭제	DELETE	/api/reply/{replyId}		{
+result : true/false
+}
+메인 페이지	GET	/api/mains		{
+result: true,
+data: {
+myPosts: [
+    {
+      “userInfo”: {
+               “username”: “username”,
+        },
+     postId: 1,
+     nickname : “닉네임”,
+     content: "내용이에요",
+     anonymous: true/false,
+     LocalDateTime: 2022-02-02,
+     replyCount : 1
+    },
+]
+}
+상세페이지	GET	/api/posts/{postId}		
+{
+result : true,
+myposts: [
+      {
+     username: username
+     postId: 1,
+     nickname : “닉네임”,
+     content: "내용이에요",
+     anonymous: true/false,
+     modifiedAt: LocalDateTime
+   },
+],
+reply: [
+  {
+   “userInfo”: 
+    username: username
+     commentId: 1,
+     nickname: “닉네임”,
+     comment: “내용이에요”,
+     anontmous: true, false,
+     modifiedAt: “LocalDateTime”,
+     
+    }
+  ]
+ }
+
