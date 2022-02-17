@@ -63,10 +63,9 @@ https://www.notion.so/anggom/8-585643bae5aa47bc813e57ff8e5a9fcd
 
 
 
-
-
-
-*게시물 삭제 시 댓글이 있을 경우 테이블 연관 관계로 인해 자식 테이블을 삭제 못함으로 인해 삭제 안되는 문제 발생
+<details>
+<summary>게시물 삭제 시 댓글이 있을 경우 테이블 연관 관계로 인해 자식 테이블을 삭제 못함으로 인해 삭제 안되는 문제 발생</summary>
+<div markdown="1">
 
 
 ```java
@@ -85,14 +84,28 @@ public boolean deleteLetter(Long postId) {
 cascade를 이용하여 해결하는 법도 있엇지만 서비스 게시물 Delete로직에서  자식 테이블인 댓글을 먼저 모두 삭제 시킨 다음에 게시물을 삭제 되게 로직을 수정함으로 해결
 
 
+</div>
+</details>
 
 
 
 
-*백엔드와 프론트 Request 요청 시에 발생하는 오류들
+<details>
+<summary>백엔드와 프론트 Request 요청 시에 발생하는 오류들</summary>
+<div markdown="1">
+
+
+
 
 ```java
 logging.level.org.apache.coyote.http11: debug
 ```
 클라이언트가 보낸 요청 메시지 로그 보는 방법인 logging.level.org.apache.coyote.http11: debug을 이용하여 문제를 찾으면서 해결
+
+</div>
+</details>
+
+
+
+
 
